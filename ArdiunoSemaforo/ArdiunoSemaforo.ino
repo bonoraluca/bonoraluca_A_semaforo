@@ -5,39 +5,16 @@ int rosso_ = 4;
 int giallo_ = 5;
 int verde_ = 6;
 int tempo = 100;
+int ripetizioni=4;
 
-void lampeggia_(int tempo) {
-  digitalWrite (verde_,LOW);
+void lampeggia(int led, int tempo, int ripetizioni) {
+  for (int i = 0;i <= ripetizioni;i++)
+  {
+  digitalWrite (led,LOW);
   delay(tempo);
-  digitalWrite (verde_,HIGH);
+  digitalWrite (led,HIGH);
   delay(tempo);
-  digitalWrite (verde_,LOW);
-  delay(tempo);
-  digitalWrite (verde_,HIGH);
-  delay(tempo);
-  digitalWrite (verde_,LOW);
-  delay(tempo);
-  digitalWrite (verde_,HIGH);
-  delay(tempo);
-  digitalWrite (verde_,LOW);
-  delay(tempo);
-}
-
-void lampeggia(int tempo){
-  digitalWrite (verde,LOW);
-  delay(tempo);
-  digitalWrite (verde,HIGH);
-  delay(tempo);
-  digitalWrite (verde,LOW);
-  delay(tempo);
-  digitalWrite (verde,HIGH);
-  delay(tempo);
-  digitalWrite (verde,LOW);
-  delay(tempo);
-  digitalWrite (verde,HIGH);
-  delay(tempo);
-  digitalWrite (verde,LOW);
-  delay(tempo);
+  }
 }
 
 void setup() {
@@ -60,7 +37,7 @@ void loop() {
 
   digitalWrite (giallo, HIGH);
   digitalWrite (giallo_, HIGH);
-  lampeggia_(tempo);
+  lampeggia(verde_, tempo, ripetizioni);
 
   digitalWrite (rosso, LOW);
   digitalWrite (giallo, LOW);
@@ -68,7 +45,7 @@ void loop() {
   digitalWrite (rosso_, HIGH);
   delay(4600);
   
-  lampeggia(tempo);
+  lampeggia(verde, tempo, ripetizioni);
   digitalWrite (giallo, HIGH);
   delay(5000);
   
