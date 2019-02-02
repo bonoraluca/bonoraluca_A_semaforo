@@ -1,24 +1,21 @@
-int rosso = 1;
+int rosso = 7;
 int giallo = 2;
 int verde = 3;
 int rosso_ = 4;
 int giallo_ = 5;
 int verde_ = 6;
-int tempo = 100;
-int ripetizioni=4;
-
-void lampeggia(int led, int tempo, int ripetizioni) {
-  for (int i = 0;i <= ripetizioni;i++)
-  {
-  digitalWrite (led,LOW);
-  delay(tempo);
-  digitalWrite (led,HIGH);
-  delay(tempo);
-  }
-}
+int tempo;
+int ripetizioni;
+int durataVerde;
+int durataGiallo;
 
 void setup() {
   // put your setup code here, to run once:
+  Serial.begin(9600);
+  quantoDuraVerde();
+  quantoDuraGiallo();
+  tempoLampeggi();
+  quantiLampeggi();
   pinMode(rosso, OUTPUT);
   pinMode(giallo, OUTPUT);
   pinMode(verde, OUTPUT);
@@ -31,22 +28,60 @@ void loop() {
   // put your main code here, to run repeatedly:
   digitalWrite (rosso_, LOW);
   digitalWrite (giallo_, LOW);
+  digitalWrite (giallo, LOW);
   digitalWrite (rosso, HIGH);
   digitalWrite (verde_, HIGH);
-  delay(4600);
-
+  delay(durataVerde);
+  
   digitalWrite (giallo, HIGH);
-  digitalWrite (giallo_, HIGH);
   lampeggia(verde_, tempo, ripetizioni);
+  digitalWrite (giallo_, HIGH);
+  delay(durataGiallo);
 
   digitalWrite (rosso, LOW);
   digitalWrite (giallo, LOW);
   digitalWrite (verde, HIGH);
+  digitalWrite (giallo_, LOW);
   digitalWrite (rosso_, HIGH);
-  delay(4600);
+  delay(durataVerde);
   
   lampeggia(verde, tempo, ripetizioni);
   digitalWrite (giallo, HIGH);
-  delay(5000);
+  delay(durataGiallo);
   
+}
+
+void tempoLampeggi(){
+  Serial.println ("quanto vuoi far durare il lampeggio?");
+  while(Serial.available() == 0) {};
+  tempo = Serial.readString().toInt();
+}
+
+void quantiLampeggi(){
+  Serial.println ("quante volte vuoi far lampeggiare il verde?");
+  while(Serial.available() == 0) {};
+  ripetizioni = Serial.readString().toInt();
+}
+
+void quantoDuraVerde(){
+  Serial.println ("quanto vuoi far durare il verde?");
+  while(Serial.available() == 0) {};
+  durataVerde = Serial.readString().toInt();
+}
+
+void quantoDuraGiallo(){
+  Serial.println ("quanto vuoi far durare il giallo?");
+  while(Serial.available() == 0) {};
+  durataGiallo = Serial.readString().toInt();
+}
+
+void lampeggia(int led, int tempo, int ripetizioni) {
+  for (int i = 0;i <= ripetizioni;i++)
+  {
+  digitalWrite (led,LOW);
+  delay(tempo);
+  digitalWrite (led,HIGH);
+  delay(tempo);
+  digitalWrite (led,LOW);
+  }
 }
