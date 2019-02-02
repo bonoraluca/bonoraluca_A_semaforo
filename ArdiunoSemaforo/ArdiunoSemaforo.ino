@@ -1,9 +1,9 @@
-int rosso = 7;
-int giallo = 2;
-int verde = 3;
-int rosso_ = 4;
-int giallo_ = 5;
-int verde_ = 6;
+int rosso = 2;
+int giallo = 3;
+int verde = 4;
+int rosso_ = 5;
+int giallo_ = 6;
+int verde_ = 7;
 int tempo;
 int ripetizioni;
 int durataVerde;
