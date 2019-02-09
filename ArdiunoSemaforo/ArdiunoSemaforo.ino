@@ -13,6 +13,7 @@ int durataGiallo;
 void setup() {
   //FUNZIONI DA ESEGUIRE ALL'INIZIO
   Serial.begin(9600);
+  instruzioni();
   quantoDuraVerde();
   quantoDuraGiallo();
   tempoLampeggi();
@@ -100,4 +101,10 @@ void lampeggia(int led, int tempo, int ripetizioni) {
   delay(tempo);
   digitalWrite (led,LOW);
   }
+}
+
+//FUNZIONE PER LE ISTRUZIONI
+void instruzioni (){
+  Serial.println ("ISTRUZIONI");
+  Serial.println ("inserire la durata in millisecondi,dopodichè premere invio");
 }
